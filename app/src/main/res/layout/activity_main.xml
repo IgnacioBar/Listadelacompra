@@ -34,10 +34,10 @@
         android:text="@string/text_tvCompleted"
         android:textSize="@dimen/sizeLetter20sp"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/recyclerViewCompleted">
     </androidx.appcompat.widget.AppCompatTextView>
 
-<!--    <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCompleted"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -46,7 +46,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCompleted"
-        />-->
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 
 
