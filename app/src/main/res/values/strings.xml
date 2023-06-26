@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Listadelacompra</string>
+    <string name="text_element">Nombre del elemento</string>
+    <string name="text_btn_new_element">Añadir elemento</string>
+    <string name="text_tvCompleted">Completados</string>
+    <string name="hint_element_name_dialog">Elemento</string>
+    <string name="text_btn_add_element">Añadir Elemento</string>
+    <string name="text_btn_cancel">Cancelar</string>
+    <string name="text_title_alert_delete">Confirmación borrado</string>
+    <string name="text_explain_delete">"¿desea eliminar la tarea  "</string>
+
+</resources>

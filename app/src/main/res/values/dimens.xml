@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sizeLetter20sp">20sp</dimen>
+    <dimen name="margin_max">20dp</dimen>
+    <dimen name="common_padding_min">8dp</dimen>
+    <dimen name="common_padding_max">16dp</dimen>
+</resources>
