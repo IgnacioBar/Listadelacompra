@@ -6,15 +6,6 @@
     android:padding="16dp"
     tools:context=".ui.main.MainActivity">
 
-    <Button
-        android:id="@+id/btnAddElement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/text_btn_new_element"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -24,16 +15,26 @@
         tools:listitem="@layout/item_element"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvCompleted"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddElement"
+        app:layout_constraintTop_toTopOf="parent"
         />
+
+    <Button
+        android:id="@+id/btnAddElement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_btn_new_element"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"
+        />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCompleted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/text_tvCompleted"
         android:textSize="@dimen/sizeLetter20sp"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddElement"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCompleted">
     </androidx.appcompat.widget.AppCompatTextView>
 
@@ -45,8 +46,8 @@
         tools:listitem="@layout/item_element"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCompleted"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCompleted"
         />
 
 
