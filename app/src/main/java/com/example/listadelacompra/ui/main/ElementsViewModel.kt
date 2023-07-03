@@ -22,9 +22,20 @@ class ElementsViewModel : ViewModel() {
 
     fun getAllElements() {
         viewModelScope.launch(Dispatchers.IO) {
-            val tasks = GetElementsUseCase().invoke()
+            val elements = GetElementsUseCase().invoke()
             withContext(Dispatchers.Main) {
-                _elements.value = tasks
+                _elements.value = elements
+            }
+        }
+    }
+
+    fun getAllElementsComplete() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val elements = GetElementsUseCase().invoke().filter { elements ->
+                elements.complete
+            }
+            withContext(Dispatchers.Main) {
+                _elementCompleted.value = elements.toMutableList()
             }
         }
     }
@@ -35,6 +46,7 @@ class ElementsViewModel : ViewModel() {
             getAllElements()
         }
     }
+
 
     fun onDeleteElement(elementModel: ElementModel) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -12,6 +12,9 @@ interface ElementDao {
     @Query("SELECT * FROM elementsList")
     fun getElements(): MutableList<ElementsEntity>
 
+    @Query("SELECT * FROM elementsList WHERE complete = :completed ")
+    fun getElementCompleted(completed: Boolean = true): MutableList<ElementsEntity>
+
     @Insert
     suspend fun addTask(item: ElementsEntity)
 

@@ -6,4 +6,5 @@ interface OnClickListener {
 
     fun onClickItem(elementModel: ElementModel)
     fun onDeleteElement(elementModel: ElementModel)
+    fun onCompleteElement(elementModel: ElementModel)
 }

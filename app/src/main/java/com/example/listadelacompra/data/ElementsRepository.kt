@@ -7,8 +7,13 @@ class ElementsRepository {
 
     private val dao = ElementsApplication.database.taskDao()
 
-    //Primero recuperamos todas las tasks
+    //Primero recuperamos todas los elementos
     val elements: MutableList<ElementModel> = dao.getElements().map { entity ->
+        ElementModel(entity.id, entity.element, entity.complete)
+    }.toMutableList()
+
+    //Ahora recuperamos todos los elementos completados
+    val elementCompleted: MutableList<ElementModel> = dao.getElements().map { entity ->
         ElementModel(entity.id, entity.element, entity.complete)
     }.toMutableList()
 

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadelacompra.R
 import com.example.listadelacompra.databinding.ActivityMainBinding
+import com.example.listadelacompra.databinding.ItemElementBinding
 import com.example.listadelacompra.databinding.NewElementBinding
 import com.example.listadelacompra.ui.adapter.ElementAdapter
 import com.example.listadelacompra.ui.adapter.OnClickListener
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             layoutManager = mLinearLayout //mGridLayout
             adapter = mAdapter
         }
+        mBinding.recyclerViewCompleted.apply {
+            setHasFixedSize(true)
+            layoutManager = mLinearLayout //mGridLayout
+            adapter = mAdapter
+        }
     }
 
     private fun initViewModel() {
@@ -66,6 +72,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             mBinding.recyclerView.adapter = mAdapter
             mBinding.recyclerView.adapter?.notifyItemChanged(elementsList.size - 1)
         }
+
+        mainViewModel.elementsCompleted.observe(this) { elementsList ->
+            //Si el listado de tareas cambia, se actualiza el RV
+            mAdapter = ElementAdapter(elementsList, this)
+            mBinding.recyclerViewCompleted.adapter = mAdapter
+            mBinding.recyclerViewCompleted.adapter?.notifyItemChanged(elementsList.size - 1)
+        }
+
     }
 
     override fun onClickItem(elementModel: ElementModel) {
@@ -85,6 +99,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 Toast.makeText(this, "Elemento eliminado", Toast.LENGTH_SHORT).show()
             }
             .show()
+    }
+
+    override fun onCompleteElement(elementModel: ElementModel) {
+        mainViewModel.getAllElementsComplete()
     }
 
     private fun showDialog() {

@@ -1,6 +1,7 @@
 package com.example.listadelacompra.ui.adapter
 
 import android.view.View
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadelacompra.databinding.ItemElementBinding
 import com.example.listadelacompra.ui.model.ElementModel
@@ -22,6 +23,7 @@ class ElementViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             listener.onDeleteElement(elementModel = elementModel)
             true
         }
+
 
     }
 }
