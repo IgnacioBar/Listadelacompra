@@ -12,12 +12,6 @@ class ElementsRepository {
         ElementModel(entity.id, entity.element, entity.complete)
     }.toMutableList()
 
-    //Ahora recuperamos todos los elementos completados
-    val elementCompleted: MutableList<ElementModel> = dao.getElements().map { entity ->
-        ElementModel(entity.id, entity.element, entity.complete)
-    }.toMutableList()
-
-
     suspend fun add(elementModel: ElementModel) {
         dao.addTask(
             ElementsEntity(
@@ -30,6 +24,16 @@ class ElementsRepository {
 
     suspend fun delete(elementModel: ElementModel){
         dao.deleteElement(
+            ElementsEntity(
+                elementModel.id,
+                elementModel.element,
+                elementModel.complete
+            )
+        )
+    }
+
+    suspend fun update(elementModel: ElementModel){
+        dao.updateElement(
             ElementsEntity(
                 elementModel.id,
                 elementModel.element,

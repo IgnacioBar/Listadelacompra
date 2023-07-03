@@ -7,7 +7,7 @@ class DeleteElementUseCase {
 
     private var repository = ElementsRepository()
 
-    suspend operator fun invoke(taskModel: ElementModel){
-        return repository.delete(taskModel)
+    suspend operator fun invoke(elementModel: ElementModel){
+        return repository.delete(elementModel)
     }
 }

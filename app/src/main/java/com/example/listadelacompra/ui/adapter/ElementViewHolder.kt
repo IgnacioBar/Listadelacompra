@@ -1,7 +1,7 @@
 package com.example.listadelacompra.ui.adapter
 
+import android.util.Log
 import android.view.View
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadelacompra.databinding.ItemElementBinding
 import com.example.listadelacompra.ui.model.ElementModel
@@ -16,6 +16,11 @@ class ElementViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         mBinding.tvElement.text = elementModel.element
         mBinding.cbCompleted.isChecked = elementModel.complete
 
+        mBinding.cbCompleted.setOnClickListener {
+            elementModel.complete = !elementModel.complete
+            listener.onCompleteElement(elementModel = elementModel)
+            Log.i("DEVELOPRAFA",elementModel.toString())
+        }
         //Si quieres click sobre toda la celda
         itemView.setOnClickListener { listener.onClickItem(elementModel) }
         //Si quieres un click largo sobre toda la celda
@@ -23,6 +28,8 @@ class ElementViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             listener.onDeleteElement(elementModel = elementModel)
             true
         }
+
+
 
 
     }

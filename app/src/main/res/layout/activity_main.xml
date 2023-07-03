@@ -7,6 +7,16 @@
     tools:context=".ui.main.MainActivity">
 
 
+    <Button
+        android:id="@+id/btnAddElement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_btn_new_element"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -15,17 +25,7 @@
         tools:listitem="@layout/item_element"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <Button
-        android:id="@+id/btnAddElement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/text_btn_new_element"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@id/btnAddElement"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:text="@string/text_tvCompleted"
         android:textSize="@dimen/sizeLetter20sp"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddElement"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCompleted">
     </androidx.appcompat.widget.AppCompatTextView>
 
