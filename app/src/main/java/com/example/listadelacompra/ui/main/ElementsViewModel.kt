@@ -29,6 +29,7 @@ class ElementsViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 _elements.value = elements.toMutableList()
             }
+
         }
     }
 
@@ -59,9 +60,9 @@ class ElementsViewModel : ViewModel() {
         }
     }
 
-    fun onUpdateElement(elementModel: ElementModel){
+    fun onUpdateElement(elementModel: ElementModel) {
         viewModelScope.launch(Dispatchers.IO) {
-            UpdateElementUseCase().invoke((elementModel))
+            UpdateElementUseCase().invoke(elementModel)
             getAllElements()
             getAllElementsComplete()
         }

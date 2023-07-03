@@ -5,7 +5,7 @@ import com.example.listadelacompra.ui.model.ElementModel
 
 class ElementsRepository {
 
-    private val dao = ElementsApplication.database.taskDao()
+    private val dao = ElementsApplication.database.elementDao()
 
     //Primero recuperamos todas los elementos
     val elements: MutableList<ElementModel> = dao.getElements().map { entity ->
@@ -13,7 +13,7 @@ class ElementsRepository {
     }.toMutableList()
 
     suspend fun add(elementModel: ElementModel) {
-        dao.addTask(
+        dao.addElement(
             ElementsEntity(
                 elementModel.id,
                 elementModel.element,

@@ -5,5 +5,5 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [ElementsEntity::class], version = 1)
 abstract class ElementsDatabase: RoomDatabase() {
-    abstract fun taskDao():ElementDao
+    abstract fun elementDao():ElementDao
 }
