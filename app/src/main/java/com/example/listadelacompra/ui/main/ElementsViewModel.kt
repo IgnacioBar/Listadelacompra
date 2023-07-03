@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.listadelacompra.domain.AddElementUseCase
 import com.example.listadelacompra.domain.DeleteElementUseCase
 import com.example.listadelacompra.domain.GetElementsUseCase
+import com.example.listadelacompra.domain.UpdateElementUseCase
 import com.example.listadelacompra.ui.model.ElementModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,9 +23,11 @@ class ElementsViewModel : ViewModel() {
 
     fun getAllElements() {
         viewModelScope.launch(Dispatchers.IO) {
-            val elements = GetElementsUseCase().invoke()
+            val elements = GetElementsUseCase().invoke().filter { elements ->
+                !elements.complete
+            }
             withContext(Dispatchers.Main) {
-                _elements.value = elements
+                _elements.value = elements.toMutableList()
             }
         }
     }
@@ -52,6 +55,15 @@ class ElementsViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             DeleteElementUseCase().invoke(elementModel)
             getAllElements()
+            getAllElementsComplete()
+        }
+    }
+
+    fun onUpdateElement(elementModel: ElementModel){
+        viewModelScope.launch(Dispatchers.IO) {
+            UpdateElementUseCase().invoke((elementModel))
+            getAllElements()
+            getAllElementsComplete()
         }
     }
 

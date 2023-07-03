@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadelacompra.R
 import com.example.listadelacompra.databinding.ActivityMainBinding
-import com.example.listadelacompra.databinding.ItemElementBinding
 import com.example.listadelacompra.databinding.NewElementBinding
 import com.example.listadelacompra.ui.adapter.ElementAdapter
 import com.example.listadelacompra.ui.adapter.OnClickListener
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var mAdapter: ElementAdapter
 
     private lateinit var mLinearLayout: RecyclerView.LayoutManager
+    private lateinit var mLinearLayoutComplete: RecyclerView.LayoutManager
 
     private val mainViewModel by viewModels<ElementsViewModel>()
 
@@ -43,12 +43,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             showDialog()
         }
 
+
     }
 
     private fun initRecyclerView() {
         //una unica columna
-        mAdapter = ElementAdapter(mutableListOf(), this)
+        mAdapter = ElementAdapter(mutableListOf(), this,0)
         mLinearLayout = LinearLayoutManager(this)
+        mLinearLayoutComplete = LinearLayoutManager(this)
+
         //Grid
         // mGridLayout = GridLayoutManager(this, spanCount)
         mBinding.recyclerView.apply {
@@ -56,26 +59,28 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             layoutManager = mLinearLayout //mGridLayout
             adapter = mAdapter
         }
+        mAdapter = ElementAdapter(mutableListOf(), this,1)
         mBinding.recyclerViewCompleted.apply {
             setHasFixedSize(true)
-            layoutManager = mLinearLayout //mGridLayout
+            layoutManager = mLinearLayoutComplete //mGridLayout
             adapter = mAdapter
         }
     }
 
     private fun initViewModel() {
         mainViewModel.getAllElements()
+        mainViewModel.getAllElementsComplete()
 
         mainViewModel.elements.observe(this) { elementsList ->
             //Si el listado de tareas cambia, se actualiza el RV
-            mAdapter = ElementAdapter(elementsList, this)
+            mAdapter = ElementAdapter(elementsList, this,0)
             mBinding.recyclerView.adapter = mAdapter
             mBinding.recyclerView.adapter?.notifyItemChanged(elementsList.size - 1)
         }
 
         mainViewModel.elementsCompleted.observe(this) { elementsList ->
             //Si el listado de tareas cambia, se actualiza el RV
-            mAdapter = ElementAdapter(elementsList, this)
+            mAdapter = ElementAdapter(elementsList, this,1)
             mBinding.recyclerViewCompleted.adapter = mAdapter
             mBinding.recyclerViewCompleted.adapter?.notifyItemChanged(elementsList.size - 1)
         }
@@ -102,7 +107,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onCompleteElement(elementModel: ElementModel) {
-        mainViewModel.getAllElementsComplete()
+        mainViewModel.onUpdateElement(elementModel)
     }
 
     private fun showDialog() {

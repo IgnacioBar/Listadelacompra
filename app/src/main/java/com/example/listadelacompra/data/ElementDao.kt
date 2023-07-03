@@ -21,5 +21,7 @@ interface ElementDao {
     @Delete
     suspend fun deleteElement(item: ElementsEntity)
 
+    @Update
+    suspend fun updateElement(item:ElementsEntity)
 
 }
