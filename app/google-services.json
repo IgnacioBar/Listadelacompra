@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "878413583458",
+    "project_id": "lista-de-la-compra-ece39",
+    "storage_bucket": "lista-de-la-compra-ece39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878413583458:android:eb0d6ba64c5b371f73ed3b",
+        "android_client_info": {
+          "package_name": "com.example.listadelacompra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878413583458-5srm7g1bn0gtbc8if0o9fdml7kdhpvas.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.listadelacompra",
+            "certificate_hash": "0a1fe0f3368b09dcd1c1e8498fad34e48288ed25"
+          }
+        },
+        {
+          "client_id": "878413583458-6pgb2f37ricd8m6uqhgv17kfmmsejq71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxwNOrEsBUq0hFGbKmrWNzcF67AhJ1XNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878413583458-6pgb2f37ricd8m6uqhgv17kfmmsejq71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

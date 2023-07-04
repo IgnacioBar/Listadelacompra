@@ -1,4 +1,4 @@
-package com.example.listadelacompra.data
+package com.example.listadelacompra.data.room
 
 import androidx.room.Entity
 import androidx.room.Index

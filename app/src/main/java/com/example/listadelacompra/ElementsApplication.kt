@@ -2,7 +2,7 @@ package com.example.listadelacompra
 
 import android.app.Application
 import androidx.room.Room
-import com.example.listadelacompra.data.ElementsDatabase
+import com.example.listadelacompra.data.room.ElementsDatabase
 
 class ElementsApplication : Application() {
 
