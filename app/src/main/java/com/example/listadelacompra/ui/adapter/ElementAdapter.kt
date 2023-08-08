@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadelacompra.R
+import com.example.listadelacompra.core.Recyclers
 import com.example.listadelacompra.ui.model.ElementModel
 
 class ElementAdapter(private val elementModel: List<ElementModel>,
@@ -13,7 +14,7 @@ class ElementAdapter(private val elementModel: List<ElementModel>,
 
     //Devuelve el item al ViewHolder por cada objeto del listado
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElementViewHolder {
-        return if(numberRv == 0) {
+        return if(numberRv == Recyclers.Superior.type) {
             val layoutInflater = LayoutInflater.from(parent.context)
             ElementViewHolder(layoutInflater.inflate(R.layout.item_element, parent, false))
         }else{

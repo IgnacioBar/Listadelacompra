@@ -9,13 +9,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.listadelacompra.BuildConfig
 import com.example.listadelacompra.R
+import com.example.listadelacompra.core.Recyclers
 import com.example.listadelacompra.databinding.ActivityMainBinding
 import com.example.listadelacompra.databinding.NewElementBinding
+import com.example.listadelacompra.databinding.NewUpdateBinding
+import com.example.listadelacompra.ui.ElementsViewModel
 import com.example.listadelacompra.ui.adapter.ElementAdapter
 import com.example.listadelacompra.ui.adapter.OnClickListener
 import com.example.listadelacompra.ui.model.ElementModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -48,7 +53,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private fun initRecyclerView() {
         //una unica columna
-        mAdapter = ElementAdapter(mutableListOf(), this,0)
+        mAdapter = ElementAdapter(mutableListOf(), this, Recyclers.Superior.type)
         mLinearLayout = LinearLayoutManager(this)
         mLinearLayoutComplete = LinearLayoutManager(this)
 
@@ -59,7 +64,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             layoutManager = mLinearLayout //mGridLayout
             adapter = mAdapter
         }
-        mAdapter = ElementAdapter(mutableListOf(), this,1)
+        mAdapter = ElementAdapter(mutableListOf(), this,Recyclers.Infieror.type)
         mBinding.recyclerViewCompleted.apply {
             setHasFixedSize(true)
             layoutManager = mLinearLayoutComplete //mGridLayout
@@ -68,8 +73,25 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun initViewModel() {
+
+        mainViewModel.checkVersion()
+
         mainViewModel.getAllElements()
         mainViewModel.getAllElementsComplete()
+
+        mainViewModel.versionCode.observe(this){ versionCode->
+            if(versionCode > BuildConfig.VERSION_CODE){
+                Toast.makeText(this, "VERSION NUEVA!!!!! - Versión: $versionCode",Toast.LENGTH_SHORT).show()
+                showDialogVersion()
+            }
+        }
+
+        mainViewModel.versionName.observe(this){ versionName->
+            if(versionName != BuildConfig.VERSION_NAME){
+                Toast.makeText(this, "VERSION NUEVA!!!!! - Versión: $versionName",Toast.LENGTH_SHORT).show()
+                showDialogVersion()
+            }
+        }
 
         mainViewModel.elements.observe(this) { elementsList ->
             //Si el listado de tareas cambia, se actualiza el RV
@@ -141,6 +163,23 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 )
                 dialog.dismiss()
             }
+        }
+    }
+
+    private fun showDialogVersion() {
+
+        val dialogBinding = NewUpdateBinding.inflate(LayoutInflater.from(this))
+        val dialogView: View = dialogBinding.root
+
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val dialog: AlertDialog = dialogBuilder.create()
+        dialog.show()
+
+        dialogBinding.btnCancel.setOnClickListener {
+            exitProcess(0)
         }
     }
 }

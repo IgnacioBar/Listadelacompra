@@ -8,5 +8,10 @@
     <string name="text_btn_cancel">Cancelar</string>
     <string name="text_title_alert_delete">Confirmación borrado</string>
     <string name="text_explain_delete">"¿desea eliminar la tarea  "</string>
+    <string name="NuevaActualización">Nueva actualización, porfavor actualice la aplicación.</string>
+    <string name="text_btn_exit">Salir</string>
+    <string name="btn_registrar">REGISTRAR</string>
+    <string name="btn_Acceder">ACCEDER</string>
+    <string name="btn_logOut">CERRAR SESIÓN</string>
 
 </resources>
