@@ -4,22 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.listadelacompra.R
-import android.widget.Button
-import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.listadelacompra.databinding.ActivityAuthBinding
-import com.example.listadelacompra.databinding.ActivityMainBinding
-import com.google.firebase.auth.FirebaseAuth
+import com.example.listadelacompra.ui.AuthViewModel
 
 
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityAuthBinding
 
+    private val authViewModel by viewModels<AuthViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //Splash
-        Thread.sleep(2000) //Hack
         setTheme(R.style.AppTheme)
 
         super.onCreate(savedInstanceState)
@@ -33,35 +32,22 @@ class AuthActivity : AppCompatActivity() {
     private fun setup() {
         title = "Autenticación"
 
+        authViewModel.login.observe(this) {result->
+            if (result.isSuccessful) showHome(result.result?.user?.email ?: "", ProviderType.BASIC)
+            else showAlert()
+        }
+
         mBinding.btnSignUp.setOnClickListener {
             if (mBinding.etEmail.text.isNotEmpty() && mBinding.etPassword.text.isNotEmpty()) {
+                authViewModel.register(email = mBinding.etEmail.text.toString(), password = mBinding.etPassword.text.toString())
 
-                FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(mBinding.etEmail.text.toString(),
-                        mBinding.etPassword.text.toString()).addOnCompleteListener {
-
-                        if (it.isSuccessful) {
-                            showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
-                        } else {
-                            showAlert()
-                        }
-                    }
             }
         }
 
         mBinding.btnLogIn.setOnClickListener {
             if (mBinding.etEmail.text.isNotEmpty() && mBinding.etPassword.text.isNotEmpty()) {
+                authViewModel.login(email = mBinding.etEmail.text.toString(), password = mBinding.etPassword.text.toString())
 
-                FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(mBinding.etEmail.text.toString(),
-                        mBinding.etPassword.text.toString()).addOnCompleteListener {
-
-                        if (it.isSuccessful) {
-                            showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
-                        } else {
-                            showAlert()
-                        }
-                    }
             }
         }
     }

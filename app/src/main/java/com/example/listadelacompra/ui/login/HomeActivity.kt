@@ -2,12 +2,7 @@ package com.example.listadelacompra.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import com.example.listadelacompra.R
 import com.example.listadelacompra.databinding.ActivityHomeBinding
-import com.example.listadelacompra.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
 enum class ProviderType {
@@ -37,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
 
         mBinding.btnLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            onBackPressed()
         }
 
     }

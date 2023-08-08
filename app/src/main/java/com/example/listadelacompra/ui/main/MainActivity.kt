@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private val mainViewModel by viewModels<ElementsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
