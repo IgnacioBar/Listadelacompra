@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary_dark">#4F934A</color>
-    <color name="primary">#569B51</color>
-    <color name="primary_light">#6AB972</color>
+    <color name="primary_dark">#FF9800</color>
+    <color name="primary">#FFC107</color>
+    <color name="primary_light">#FFEB3B</color>
 
     <color name="secondary_dark">#009688</color>
     <color name="secondary">#09B6A6</color>
@@ -26,4 +26,6 @@
 
     <color name="divider">#A68B979D</color>
     <color name="outline">#39424E</color>
+
+
 </resources>

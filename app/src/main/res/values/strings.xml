@@ -10,8 +10,13 @@
     <string name="text_explain_delete">"¿desea eliminar la tarea  "</string>
     <string name="NuevaActualización">Nueva actualización, porfavor actualice la aplicación.</string>
     <string name="text_btn_exit">Salir</string>
-    <string name="btn_registrar">REGISTRAR</string>
-    <string name="btn_Acceder">ACCEDER</string>
-    <string name="btn_logOut">CERRAR SESIÓN</string>
+
+    <string name="login__login">Iniciar sesion</string>
+    <string name="login__login_button">Iniciar sesion</string>
+    <string name="login__signup_button">Registrarme</string>
+    <string name="login__password_recovery_button">Recuperar contraseña</string>
+    <string name="hintEmail">Correo electronico</string>
+    <string name="hintPassword">Contraseña</string>
+    <string name="login__password_recovery_header">¿Olvidaste tu contraseña?</string>
 
 </resources>

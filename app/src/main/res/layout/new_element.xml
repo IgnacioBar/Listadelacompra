@@ -28,6 +28,7 @@
         android:layout_height="match_parent"
         android:text="@string/text_btn_add_element"
         android:padding="8dp"
+        android:backgroundTint="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/tilNameElement"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnCancel"/>
@@ -38,6 +39,7 @@
         android:layout_height="match_parent"
         android:text="@string/text_btn_cancel"
         android:padding="8dp"
+        android:backgroundTint="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/tilNameElement"
         app:layout_constraintStart_toEndOf="@id/btnAddElementDialog"
         app:layout_constraintEnd_toEndOf="parent"/>

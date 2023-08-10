@@ -5,54 +5,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin_max"
+    android:background="@drawable/signin_screen"
     tools:context=".ui.login.AuthActivity">
 
     <LinearLayout
-        android:id="@+id/llLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="175dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/imgLogin"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_logo" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/hintEmail"
+            android:inputType="textEmailAddress"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="8dp"/>
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
+            android:hint="@string/hintPassword"
+            android:inputType="textPassword"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="16dp"/>
 
-        <LinearLayout
-            android:id="@+id/llLoginBtn"
+        <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:text="@string/login__login"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/primary"
+            android:layout_marginBottom="8dp"
+            android:radius="20dp"/>
 
-            <Button
-                android:id="@+id/btnSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondary"
-                android:layout_weight="1"
-                android:text="@string/btn_registrar"/>
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login__signup_button"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/primary"
+            android:radius="20dp"/>
 
-            <Button
-                android:id="@+id/btnLogIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/primary"
-                android:layout_weight="1"
-                android:text="@string/btn_Acceder"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvForgotPassword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login__password_recovery_header"
+            android:textColor="#4CAF50"
+            android:layout_marginTop="8dp"
+            android:textStyle="italic"/>
 
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login__password_recovery_button"
+            android:textColor="#4CAF50"
+            android:layout_marginTop="8dp"
+            android:textStyle="italic"
+            android:clickable="true"
+            android:onClick="forgotPasswordClicked"
+            android:focusable="true" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

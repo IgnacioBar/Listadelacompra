@@ -3,11 +3,12 @@ package com.example.listadelacompra.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.listadelacompra.R
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.listadelacompra.databinding.ActivityAuthBinding
 import com.example.listadelacompra.ui.AuthViewModel
+import com.example.listadelacompra.ui.main.MainActivity
 
 
 class AuthActivity : AppCompatActivity() {
@@ -19,33 +20,40 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //Splash
-        setTheme(R.style.AppTheme)
+        val splashScreen = installSplashScreen()
 
         super.onCreate(savedInstanceState)
         mBinding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+        splashScreen.setKeepOnScreenCondition{
+            false
+        }
 
         //Setup
         setup()
     }
 
     private fun setup() {
-        title = "Autenticación"
 
         authViewModel.login.observe(this) {result->
-            if (result.isSuccessful) showHome(result.result?.user?.email ?: "", ProviderType.BASIC)
-            else showAlert()
+            if (result.isSuccessful) {
+                showMain()
+            } else {
+                showAlert()
+            }
+
         }
 
         mBinding.btnSignUp.setOnClickListener {
-            if (mBinding.etEmail.text.isNotEmpty() && mBinding.etPassword.text.isNotEmpty()) {
+            if (mBinding.etEmail.text.isNotEmpty() && mBinding.etPassword.text?.isNotEmpty() == true) {
                 authViewModel.register(email = mBinding.etEmail.text.toString(), password = mBinding.etPassword.text.toString())
 
             }
         }
 
-        mBinding.btnLogIn.setOnClickListener {
-            if (mBinding.etEmail.text.isNotEmpty() && mBinding.etPassword.text.isNotEmpty()) {
+        mBinding.btnLogin.setOnClickListener {
+            if (mBinding.etEmail.text.isNotEmpty() && mBinding.etPassword.text?.isNotEmpty() == true) {
                 authViewModel.login(email = mBinding.etEmail.text.toString(), password = mBinding.etPassword.text.toString())
 
             }
@@ -62,13 +70,9 @@ class AuthActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showHome(email: String, provider: ProviderType) {
-
-        val homeIntent = Intent(this, HomeActivity::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider.name)
-        }
-        startActivity(homeIntent)
+    private fun showMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
 }
