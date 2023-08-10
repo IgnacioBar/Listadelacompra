@@ -19,6 +19,10 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        if (supportActionBar != null) {
+            supportActionBar?.hide()
+        }
+
         //Splash
         val splashScreen = installSplashScreen()
 
