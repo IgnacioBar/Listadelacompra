@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadelacompra.BuildConfig
@@ -20,10 +21,14 @@ import com.example.listadelacompra.ui.adapter.ElementAdapter
 import com.example.listadelacompra.ui.adapter.OnClickListener
 import com.example.listadelacompra.ui.model.ElementModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity(), OnClickListener {
+
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAdapter: ElementAdapter
@@ -38,6 +43,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
 
         // Inicializar el recyclerView
         initRecyclerView()

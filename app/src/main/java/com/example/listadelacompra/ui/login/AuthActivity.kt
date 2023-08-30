@@ -3,17 +3,23 @@ package com.example.listadelacompra.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.listadelacompra.databinding.ActivityAuthBinding
 import com.example.listadelacompra.ui.AuthViewModel
 import com.example.listadelacompra.ui.main.MainActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityAuthBinding
+
+    private val db = Firebase.firestore
 
     private val authViewModel by viewModels<AuthViewModel>()
 
@@ -42,6 +48,7 @@ class AuthActivity : AppCompatActivity() {
 
         authViewModel.login.observe(this) {result->
             if (result.isSuccessful) {
+                createUser(FirebaseAuth.getInstance().currentUser?.email.toString() + "#" + "Lista de la compra") //conseguir arreglar esto
                 showMain()
             } else {
                 showAlert()
@@ -62,6 +69,25 @@ class AuthActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun createUser(email: String) {
+        val element = hashMapOf(
+            "Element" to "pepinillos",
+            "Complete" to false
+        )
+        Log.i("Ignacio", email)
+        Log.i("Ignacio", element.toString())
+        db.collection(email)
+            //.document("Lista de la compra")
+            //.set(element)
+            .add(element)
+            .addOnSuccessListener {
+                Log.i("Ignacio", "DocumentSnapshot added with ID:")
+            }
+            .addOnFailureListener {
+                Log.i("Ignacio", "Error adding document")
+            }
     }
 
     private fun showAlert() {
